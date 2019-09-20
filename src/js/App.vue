@@ -10,7 +10,7 @@
 
                 <h1 class="app__header__title">VUE Elements</h1>
                 <p class="app__header__body">
-                    A collection of vue elements with added functionality/feature to be used primarily as a base framework for feasibility testing or as a base element
+                    A collection of vue elements with added functionality/feature to be used primarily as a base framework or for feasibility testing
                 </p>
 
             </div>
