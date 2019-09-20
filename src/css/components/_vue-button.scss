@@ -1,0 +1,223 @@
+/**
+ * ==================================================================================
+ * Vue Button Stylesheet
+ * ==================================================================================
+ */
+
+$vue-btn-default: #efefef;
+$vue-btn-default-light: #f7f7f7;
+
+$vue-btn-disabled: #d6d6d6;
+$vue-btn-disabled-light: #f9f9f9;
+
+$vue-btn-error: #e74c3c;
+$vue-btn-error-light: #ffc5c5;
+$vue-btn-success: #27ae60;
+$vue-btn-success-light: #e2ffe7;
+$vue-btn-warning: #f39c12;
+$vue-btn-warning-light: #ffedd0;
+
+
+/**
+ * @Mixins
+ * ============================================================
+ */
+
+@mixin border-radius($property) {
+    -webkit-border-radius: $property;
+            border-radius: $property;
+}
+
+@mixin box-shadow($p1, $p2, $p3) {
+    -webkit-box-shadow: $p1, $p2, $p3;
+            box-shadow: $p1, $p2, $p3;
+}
+
+@mixin box-sizing($property) {
+    -webkit-box-sizing: $property;
+       -moz-box-sizing: $property;
+            box-sizing: $property;
+}
+
+@mixin user-select($property) {
+    -webkit-user-select: $property;
+       -moz-user-select: $property;
+        -ms-user-select: $property;
+            user-select: $property;
+}
+
+@mixin transition($property) {
+    -webkit-transition: $property;
+       -moz-transition: $property;
+        -ms-transition: $property;
+         -o-transition: $property;
+            transition: $property;
+}
+
+@mixin theme($bg, $color) {
+    background: $bg;
+    color: $color;
+}
+
+
+/**
+ * @CSS
+ * ============================================================
+ */
+
+.vue-button {
+    position: relative;
+    display: inline-flex;
+    font-family: inherit;
+    font-size: 12px;
+    text-decoration: none;
+    width: auto;
+    height: 36px;
+    padding: 0 15px;
+    margin: 5px;
+    align-items: center;
+    vertical-align: middle;
+    text-align: center;
+    border-width: 0px;
+    cursor: pointer;
+
+    @include box-sizing(border-box);
+    @include theme($vue-btn-default, #333);
+    @include user-select(none);
+    @include transition(background .4s cubic-bezier(.4, 0, .2, 1));
+
+
+    .vue-button__icon,
+    .vue-button__label {
+        color: inherit;
+    }
+
+    .vue-button__icon {
+        font-size: 1.3em;
+        padding-right: 5px;
+        margin: 0 auto;
+    }
+
+    .vue-button__label {
+        font-size: 1em;
+    }
+}
+
+.vue-button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+    will-change: background-color, opacity;
+
+    @include transition(all .4s cubic-bezier(.4, 0, .2, 1));
+}
+
+.vue-button:hover:before {
+    background-color: white;
+    opacity: .3;
+}
+
+.vue-button:focus {
+    outline: none;
+}
+
+
+
+
+.vue-button.vue-button--small {
+    font-size: 10px;
+    height: 24px;
+}
+
+.vue-button.vue-button--large {
+    font-size: 16px;
+    height: 48px;
+}
+
+
+
+
+.vue-button.vue-button--flat {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.vue-button.vue-button--block {
+    display: block;
+    width: 100%;
+}
+
+.vue-button.vue-button--shadow {
+    @include box-shadow(0 3px 1px -2px rgba(0, 0, 0, 0.15), 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.1));
+}
+
+.vue-button.vue-button--semi-round {
+    @include border-radius(28px);
+}
+
+.vue-button.vue-button--semi-round:before {
+    @include border-radius(28px);
+}
+
+.vue-button.vue-button--round {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+
+    @include border-radius(50%);
+
+    .vue-button__icon {
+        padding-right: 0;
+    }
+}
+
+.vue-button.vue-button--round:before {
+    @include border-radius(50%);
+}
+
+.vue-button.vue-button--small.vue-button--round {
+    width: 24px;
+    height: 24px;
+}
+
+.vue-button.vue-button--large.vue-button--round {
+    width: 48px;
+    height: 48px;
+}
+
+
+
+.vue-button.vue-button--flat { @include theme(transparent, #333); }
+.vue-button:hover.vue-button--flat { @include theme($vue-btn-default-light, #333); }
+
+.vue-button.vue-button--success { @include theme($vue-btn-success, white); }
+.vue-button.vue-button--success.vue-button--flat { @include theme(transparent, $vue-btn-success); }
+.vue-button:hover.vue-button--success.vue-button--flat { @include theme($vue-btn-success-light, $vue-btn-success); }
+
+.vue-button.vue-button--warning { @include theme($vue-btn-warning, white); }
+.vue-button.vue-button--warning.vue-button--flat { @include theme(transparent, $vue-btn-warning); }
+.vue-button:hover.vue-button--warning.vue-button--flat { @include theme($vue-btn-warning-light, $vue-btn-warning); }
+
+.vue-button.vue-button--error { @include theme($vue-btn-error, white); }
+.vue-button.vue-button--error.vue-button--flat { @include theme(transparent, $vue-btn-error); }
+.vue-button:hover.vue-button--error.vue-button--flat { @include theme($vue-btn-error-light, $vue-btn-error); }
+
+.vue-button:disabled,
+.vue-button.vue-button--disabled
+.vue-button:hover.vue-button--disabled {
+    cursor: not-allowed;
+
+    @include theme($vue-btn-disabled-light, $vue-btn-disabled);
+}
+
+.vue-button:disabled.vue-button--flat,
+.vue-button.vue-button--disabled.vue-button--flat {
+    @include theme(none, $vue-btn-disabled);
+}

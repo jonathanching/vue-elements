@@ -1,0 +1,72 @@
+/**
+ * ==================================================================================
+ * Typography
+ * ==================================================================================
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,800&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+
+/**
+ * @Variables
+ * ==================================================================================
+ */
+
+$font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+$font-color: #333;
+$font-style-reg: 200;
+$font-style-bold: 800;
+
+$green: #42b983;
+
+
+/**
+ * @Mixins
+ * ==================================================================================
+ */
+
+//
+
+
+/**
+ * @Extends
+ * ==================================================================================
+ */
+
+%default-font {
+	font-family: $font-family;
+	font-weight: $font-style-reg;
+}
+
+
+/**
+ * @Styles
+ * ==================================================================================
+ */
+
+h1, h2, h3, h4, h5, h6,
+p, a, label, span,
+input, textarea {
+    @extend %default-font;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 5px;
+    color: $font-color;
+}
+
+p, a, label, span {
+    font-size: 1em;
+    font-weight: $font-style-reg;
+    color: $font-color;
+}
+
+input, textarea {
+    font-size: 1.1em;
+    color: $font-color;
+}
+
+pre {
+    color: #333;
+}

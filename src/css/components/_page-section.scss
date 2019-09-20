@@ -1,0 +1,165 @@
+/**
+ * ==================================================================================
+ * Page Section Stylesheet
+ * ==================================================================================
+ */
+
+
+/**
+ * @Styles
+ * ============================================================
+ */
+
+.section {
+	position: relative;
+
+    .section__content {
+
+    	.section__header {
+    		margin: 20px auto;
+
+    		.section__header__icon:nth-child(1) {
+    			margin-right: 1px;
+    		}
+
+            .section__header__icon:nth-child(2) {
+                margin-left: 1px;
+            }
+
+	    	.section__header__title {
+	    		font-weight: $font-style-bold;
+	    		margin: 0;
+	    		color: $green;
+	    	}
+
+            .section__header__desc {
+                margin-top: 0;
+            }
+    	}
+
+        .section__back {
+            font-size: .9em;
+            cursor: pointer;
+
+            @include transition(all 0.2s ease);
+        }
+
+        .section__back:hover {
+            font-weight: $font-style-bold;
+            color: $green;
+        }
+    }
+
+    .section__controls {
+    	position: absolute;
+        min-height: 250px;
+        min-width: 100px;
+        max-width: 250px;
+        max-height: 100%;
+        right: 0;
+        top: -25%;
+        padding: 20px;
+        background: white;
+
+        border-radius: 5px 0 0 5px;
+        border-width: 3px;
+        border-style: solid;
+        border-color: $green;
+
+        @include transition(all 0.15s ease);
+        @include transform(translateX(100%));
+
+        .section__controls__btn {
+            position: absolute;
+            font-family: 'Arial';
+            font-weight: bold;
+            font-size: .7em;
+            text-transform: uppercase;
+            left: -40px;
+            top: 10px;
+            padding: 4px 4px 10px 6px;
+            background: $green;
+            color: white;
+            border-radius: 5px 0 0 5px;
+            cursor: pointer;
+
+            text-orientation: upright;
+            -webkit-writing-mode: vertical-lr;
+                -ms-writing-mode: tb-lr;
+                    writing-mode: vertical-lr;
+
+            i {
+                font-size: 1.5em;
+                margin: 5px 0;
+                height: 10px;
+            }
+        }
+    }
+
+    .section__controls.section__controls--visible {
+        @include transform(translateX(0%));
+    }
+
+    .section__source {
+		position: absolute;
+    }
+}
+
+
+.page__content {
+    margin: 30px 0 100px 0;
+}
+
+.page__controls {
+    height: 90%;
+    text-align: left;
+
+    .controls__item {
+        margin-bottom: 15px;
+
+        .controls__item__label {
+            font-family: Arial;
+            font-weight: $font-style-bold;
+            font-size: .85em;
+            text-transform: uppercase;
+            margin: 0 0 5px 0;
+            color: $green;
+        }
+
+        input {
+            display: inline-block;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid #b5d8b5;
+            outline: none;
+        }
+
+        p {
+
+        }
+
+        span {
+            font-size: .85em;
+        }
+    }
+
+    pre {
+        height: 100%;
+        overflow: auto;
+        font-size: .9em;
+
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+          word-wrap: break-word;
+    }
+}
+
+
+
+
+

@@ -1,0 +1,325 @@
+/**
+ * ==================================================================================
+ * Vue Select Stylesheet
+ * ==================================================================================
+ */
+
+$vue-select-height: 36px;
+$vue-select-highlight: #2980b9;
+
+$vue-select-selected: lightgray;
+$vue-select-hover: #f9f9f9;
+
+$vue-select-default: #efefef;
+$vue-select-default-light: #f7f7f7;
+
+$vue-select-disabled: #adadad;
+$vue-select-disabled-light: #f9f9f9;
+
+$vue-select-error: #e74c3c;
+$vue-select-error-light: #ffc5c5;
+$vue-select-success: #27ae60;
+$vue-select-success-light: #e2ffe7;
+$vue-select-warning: #f39c12;
+$vue-select-warning-light: #ffedd0;
+
+
+/**
+ * @Mixins
+ * ============================================================
+ */
+
+@mixin border-radius($property) {
+    -webkit-border-radius: $property;
+            border-radius: $property;
+}
+
+@mixin box-shadow($p1, $p2, $p3) {
+    -webkit-box-shadow: $p1, $p2, $p3;
+            box-shadow: $p1, $p2, $p3;
+}
+
+@mixin transition($property) {
+    -webkit-transition: $property;
+       -moz-transition: $property;
+        -ms-transition: $property;
+         -o-transition: $property;
+            transition: $property;
+}
+
+@mixin transform($property) {
+    -webkit-transform: $property;
+       -moz-transform: $property;
+        -ms-transform: $property;
+         -o-transform: $property;
+            transform: $property;
+}
+
+@mixin input-theme($prop1, $prop2) {
+    border-color: $prop1;
+    color: $prop1;
+
+    @if $prop2 {
+        background: $prop2;
+    }
+}
+
+@mixin theme {
+    .vue-select__input {
+        @content
+
+        .vue-select__single,
+        .vue-select__multi,
+        .vue-select__icon {
+            @content
+        }
+    }
+}
+
+%textfield-attr {
+    height: $vue-select-height;
+    font-size: 1em;
+    text-indent: 10px;
+    padding: 0;
+}
+
+
+/**
+ * @Transitions
+ * ============================================================
+ */
+
+.fade-to-top-enter,
+.fade-to-top-leave-to {
+    @include transform(translateY(10px));
+    opacity: 0;
+}
+
+.fade-to-top-enter-active,
+.fade-to-top-leave-active {
+    @include transition(all .3s);
+}
+
+
+/**
+ * @CSS
+ * ============================================================
+ */
+
+.vue-select {
+    position: relative;
+    display: inline-flex;
+    width: auto;
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: 12px;
+    outline: none;
+
+    .vue-select__input {
+        display: inline-block;
+        width: 100%;
+        padding: 9.5px 25px 9.5px 10px;
+        border: 1px solid lightgray;
+
+        @include border-radius(5px);
+
+        .vue-select__single,
+        .vue-select__single:read-only {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .vue-select__placeholder {
+            @extend %textfield-attr;
+
+            height: auto;
+            width: 100%;
+            text-indent: 0;
+            cursor: pointer;
+            color: $vue-select-disabled;
+        }
+
+        .vue-select__icon {
+            position: absolute;
+            top: 12.5px;
+            right: -25px;
+            padding: 3px;
+            border: solid #bfbfbf;
+            border-width: 0 1px 1px 0;
+            color: inherit;
+            z-index: 2;
+
+            @include transition(transform .3s ease);
+            @include transform(rotate(45deg));
+        }
+
+        .vue-select__icon.vue-select__icon--reversed {
+            @include transform(rotate(-130deg));
+        }
+    }
+
+    .select__textfield:hover {
+
+        .vue-select__icon {
+            color: $vue-select-highlight;
+        }
+    }
+
+    .vue-select__box {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        padding-right: 37px;
+        background: white;
+        z-index: 1;
+
+        @include border-radius(3px);
+        @include box-shadow(0 1px 1px -2px rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.1));
+
+
+        .vue-select__searchfield {
+            @extend %textfield-attr;
+
+            width: 100%;
+            border: none;
+            outline: none;
+            background: white;
+        }
+
+        .vue-select__options {
+            width: 100%;
+            padding-bottom: 10px;
+            padding-right: 37px;
+            max-height: 200px;
+            overflow-y: auto;
+
+
+            .vue-select__options__item {
+                @extend %textfield-attr;
+
+                width: 100%;
+                height: auto;
+                text-align: left;
+                margin: 0;
+                padding: 3px 37px 3px 0;
+                cursor: pointer;
+            }
+
+            .vue-select__options__item:hover {
+                background: $vue-select-hover;
+            }
+
+            .vue-select__options__item.vue-select__options__item--focus {
+                background: $vue-select-selected;
+            }
+
+            .vue-select__options__item.vue-select__options__item--selected {
+                background: $vue-select-highlight;
+                color: white;
+            }
+
+            .vue-select__options--msg {
+                text-align: center;
+                padding-bottom: 0;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.vue-select.vue-select--multi {
+
+    .vue-select__input {
+        padding: 4.5px 25px 4.5px 10px;
+
+        .vue-select__multi {
+            display: inline-block;
+            position: relative;
+            padding: 5px 8px;
+            margin: 1px;
+            background: $vue-select-highlight;
+            color: white;
+            cursor: pointer;
+
+            @include border-radius(3px);
+
+            .vue-select__multi__close {
+                font-family: 'Arial';
+                font-size: .9em;
+                font-style: normal;
+                position: absolute;
+                top: 25%;
+                right: 10%;
+                color: white;
+            }
+        }
+
+        .vue-select__multi:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 1;
+            will-change: background-color, opacity;
+
+            @include transition(all .4s cubic-bezier(.4, 0, .2, 1));
+        }
+
+        .vue-select__multi:hover:before {
+            background-color: white;
+            opacity: .2;
+        }
+
+        .vue-select__placeholder {
+            display: block;
+            padding: 5px 0 7px 0;
+        }
+    }
+}
+
+
+.vue-select.vue-select--flat {
+
+    .vue-select__input {
+
+        .vue-select__single {
+            border: none;
+        }
+    }
+}
+
+.vue-select.vue-select--block {
+    display: block;
+}
+
+
+.vue-select.vue-select--success {
+    @include theme {
+        @include input-theme($vue-select-success, null);
+    }
+}
+
+.vue-select.vue-select--warning {
+    @include theme {
+        @include input-theme($vue-select-warning, null);
+    }
+}
+
+.vue-select.vue-select--error {
+    @include theme {
+        @include input-theme($vue-select-error, null);
+    }
+}
+
+.vue-select.vue-select--disabled {
+    @include theme {
+        @include input-theme($vue-select-disabled, $vue-select-disabled-light);
+
+        cursor: not-allowed;
+    }
+}

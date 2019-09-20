@@ -1,0 +1,114 @@
+/**
+ * ==================================================================================
+ * Vue Button Stylesheet
+ * ==================================================================================
+ */
+
+
+/**
+ * @Mixins
+ * ============================================================
+ */
+
+@mixin select($property) {
+    -webkit-user-select: $property; /* Safari */
+     -khtml-user-select: $property; /* Konqueror HTML */
+       -moz-user-select: $property; /* Firefox */
+        -ms-user-select: $property; /* Internet Explorer/Edge */
+            user-select: $property; /* supported by Chrome and Opera */
+}
+
+@mixin box-shadow($property) {
+    -webkit-box-shadow: $property;
+            box-shadow: $property;
+}
+
+
+/**
+ * @Extends
+ * ============================================================
+ */
+
+%unselectable {
+    @include select(none);
+}
+
+
+/**
+ * @CSS
+ * ============================================================
+ */
+
+.sortable-table {
+    position: relative;
+    border-collapse: collapse;
+    width: 50%;
+    max-width: 500px;
+    margin: auto;
+    border: 1px solid #f1f1f1;
+    border-radius: 5px;
+    z-index: 1;
+
+
+    .sortable-table__drag {
+        position: absolute;
+        width: 100%;
+        border: 1px solid #f1f1f1;
+        z-index: 10;
+
+        @include box-shadow(2px 2px 3px 0px rgba(0, 0, 0, 0.05));
+    }
+
+    thead {
+        background: $green;
+
+        th {
+            text-transform: capitalize;
+            padding: 10px 0;
+            color: white;
+
+            @extend %unselectable;
+        }
+    }
+
+    tbody {
+
+        tr {
+            cursor: grabbing;
+
+            @include transition(all 0.2s ease);
+
+            td {
+                padding: 10px 0;
+            }
+        }
+
+        tr:nth-child(even) {
+            background-color: #f7f7f7;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        tr.is-dragging {
+            background: #ffcb05;
+        }
+    }
+}
+
+.sortable-table.sortable-table--dragging {
+    thead {
+        th {
+            @extend %unselectable;
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+                @extend %unselectable;
+            }
+        }
+    }
+}
