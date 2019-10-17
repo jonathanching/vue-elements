@@ -283,7 +283,7 @@
             	for(var i = 0; i < target.children.length; i++) {
             		let oldTD = target.children[i],
             			newTD = this.dragElement.children[i];
-
+                    /* Copy sizes as the draggable `tr` doesn't have the proper sizes */
 					newTD.style.width = this.getStyle(oldTD, 'width');
             		newTD.style.height = this.getStyle(oldTD, 'height');
             		newTD.style.padding = this.getStyle(oldTD, 'padding');
@@ -404,8 +404,10 @@
              * @param {MouseEvent} event
              */
             getMouseDownCoords: function(event) {
+                /* Only capture left mouse button */
+                if(event.button != 0) return true;
+                /* Check if clicked on a `tr` element */
             	let target = this.getTargetRow(event.target);
-
                 if(!this._isTableRow(target)) return;
 
 

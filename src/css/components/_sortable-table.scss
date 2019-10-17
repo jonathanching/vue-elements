@@ -93,7 +93,15 @@
 
         tr.is-dragging {
             background: #ffcb05;
+
+            td {
+                color: #d6a900;
+            }
         }
+    }
+
+    .sortable-table__drag {
+        cursor: grabbing;
     }
 }
 
