@@ -1,0 +1,7 @@
+// 'use strict';
+
+// import { shallowMount } from '@vue/test-utils'
+// import VueSelect from '../VueSelect.vue'
+
+// /* Create component */
+// const wrapper = shallowMount(VueSelect);

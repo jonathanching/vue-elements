@@ -1,6 +1,6 @@
 <template>
 
-    <component @click.native="trigger"
+    <component @click="trigger"
     :is="type"
 
     :id="id"
@@ -358,8 +358,9 @@
 
 
                 /* Fire event if `emit` settings is enabled */
-                if(this.emitOnClick)
+                if(this.emitOnClick) {
                     this.$emit('onClick');
+                }
 
                 /* Fire specified `onClick` event */
                 this.onClick();
